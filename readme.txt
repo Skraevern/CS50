@@ -1,0 +1,1 @@
+To compile programs with <cs50.h> use "clang -o hello hello.c -lcs50" instead of make hello 
