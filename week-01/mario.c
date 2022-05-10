@@ -5,7 +5,7 @@ int main(void) {
     int n;
     do {
         n = get_int("Width: ");
-    } 
+    }
     while (n < 1);
     
     
