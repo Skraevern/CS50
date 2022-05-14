@@ -1,6 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 // Calculates readability using Coleman-Liau index:
 // index = 0.0588 * L - 0.296 * S - 15.8. 
@@ -11,11 +12,10 @@
 int main(void)
 {
     string input_txt = get_string("Text: ");
-    printf("%s\n", input_txt);
 
-    int letters = 0;
-    int words = 1;
-    int sentences = 0;
+    float letters = 0;
+    float words = 1;
+    float sentences = 0;
 
     for (int i = 0; i < strlen(input_txt); i++)
     {
@@ -25,7 +25,7 @@ int main(void)
         {
             letters++;
         }
-        if (ascii == 33 || ascii >= 44 && ascii <= 46 || ascii >= 58 && ascii <= 63) 
+        if (ascii == 33 || ascii == 46 || ascii >= 58 && ascii <= 63) 
         {
             sentences++;
             
@@ -36,7 +36,30 @@ int main(void)
         }
         
     }
-    printf("letters: %i\n", letters);
-    printf("words: %i\n", words);
-    printf("sentences: %i\n", sentences);
+
+    float L = letters / words * 100;
+    float S = sentences / words * 100;
+
+    float coleman_Liau = 0.0588 * L - 0.296 * S - 15.8;
+    int coleman_Liau_round = round(coleman_Liau);
+    
+
+    printf("letters: %f\n", letters);
+    printf("words: %f\n", words);
+    printf("sentences: %f\n", sentences);
+    printf("coleman_Liau: %f\n", coleman_Liau);
+    printf("coleman_Liau_round: %i\n", coleman_Liau_round);
+
+    if (coleman_Liau >= 16)
+    {
+        printf("Grade 16+\n");
+    }
+    else if (coleman_Liau < 1)
+    {
+        printf("Before Grade 1\n");
+    }
+    else
+    {
+        printf("Grade %i\n", coleman_Liau_round);
+    }
 }
