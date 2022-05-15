@@ -20,21 +20,22 @@ int main(void)
     for (int i = 0; i < strlen(input_txt); i++)
     {
         int ascii = input_txt[i];
-        
-        if (ascii >= 97 && ascii <= 122 || ascii >= 65 && ascii <= 90)
+
+        // ASCII number of a-z and A-Z
+        if ((ascii >= 97 && ascii <= 122) || (ascii >= 65 && ascii <= 90))
         {
             letters++;
         }
-        if (ascii == 33 || ascii == 46 || ascii >= 58 && ascii <= 63) 
+        // ! or . or ?
+        if (ascii == 33 || ascii == 46 || ascii == 63)
         {
             sentences++;
-            
         }
-        if (ascii == 32) 
+        // space
+        if (ascii == 32)
         {
             words++;
         }
-        
     }
 
     float L = letters / words * 100;
@@ -42,13 +43,6 @@ int main(void)
 
     float coleman_Liau = 0.0588 * L - 0.296 * S - 15.8;
     int coleman_Liau_round = round(coleman_Liau);
-    
-
-    printf("letters: %f\n", letters);
-    printf("words: %f\n", words);
-    printf("sentences: %f\n", sentences);
-    printf("coleman_Liau: %f\n", coleman_Liau);
-    printf("coleman_Liau_round: %i\n", coleman_Liau_round);
 
     if (coleman_Liau >= 16)
     {
