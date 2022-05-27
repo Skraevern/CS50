@@ -34,9 +34,24 @@ int main(int argc, string argv[])
         {
             key[i] -= 32;
         }
-        
+
     }
-    
+    // Checks for duplicate keys
+    string temp_key = key;
+    for (int i = 0; i < strlen(key) - 1; i++)
+    {
+        for (int j = i + 1; j < strlen(key); j++)
+        {
+            if (key[i] == key[j])
+            {
+                printf("Invalid key. Duplicate keys.\n");
+                return 1;
+            }
+        }
+
+    }
+
+
     string text = get_string("plaintext: ");
     string lower_case = "abcdefghijklmnopqrstuvwxyz";
     string upper_case = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -45,13 +60,13 @@ int main(int argc, string argv[])
     {
         for (int j = 0; j < strlen(upper_case); j++)
         {
-            
+
             if (text[i] == upper_case[j])
             {
                 text[i] = key[j];
                 break;
             }
-            
+
             if (text[i] == lower_case[j])
             {
                 text[i] = key[j] + 32;
