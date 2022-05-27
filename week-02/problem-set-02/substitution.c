@@ -21,6 +21,22 @@ int main(int argc, string argv[])
         return 1;
     }
     string key = argv[1];
+
+    // Makes all key letters uppercase or returns if not a character.
+    for (int i = 0; i < strlen(key); i++)
+    {
+        if (key[i] <= 64 || key[i] >= 123)
+        {
+            printf("Invalid key. Must contain all letters.\n");
+            return 1;
+        }
+        if (key[i] >= 97 && key[i] <= 122)
+        {
+            key[i] -= 32;
+        }
+        
+    }
+    
     string text = get_string("plaintext: ");
     string lower_case = "abcdefghijklmnopqrstuvwxyz";
     string upper_case = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
