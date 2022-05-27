@@ -1,7 +1,6 @@
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 
 
 int main(int argc, string argv[])
@@ -22,19 +21,9 @@ int main(int argc, string argv[])
         return 1;
     }
     string key = argv[1];
-    string lower_key;
     string text = get_string("plaintext: ");
-    string text2 = text;
     string lower_case = "abcdefghijklmnopqrstuvwxyz";
     string upper_case = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-    
-    for (int i = 0; i < strlen(lower_case); i++)
-    {
-        
-        //lower_key[i] = key[i] + 32;
-    }
-    
 
     for (int i = 0; i < strlen(text); i++)
     {
@@ -49,7 +38,7 @@ int main(int argc, string argv[])
             
             if (text[i] == lower_case[j])
             {
-                text[i] = lower_key[j];
+                text[i] = key[j] + 32;
                 break;
             }
         }
@@ -57,4 +46,3 @@ int main(int argc, string argv[])
     printf("ciphertext: %s\n", text);
     return 0;
 }
-//text2[i] = key[i_upper];
